@@ -16,6 +16,10 @@ public class Utils {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
+    public static void scrollToElementStatic(WebDriver driver, WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
 
     public static WebElement fluentWait(WebDriver driver, By by) {
         Wait<WebDriver> wait = new FluentWait<>(driver)

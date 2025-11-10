@@ -2,12 +2,17 @@ package org.example;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import atu.testrecorder.ATUTestRecorder;
 import atu.testrecorder.exceptions.ATUTestRecorderException;
 import java.io.File;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+
 
 public class App {
 
@@ -27,10 +32,14 @@ public class App {
 
             // Setup driver
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--no-sandbox", "--disable-dev-shm-usage"); // headless removed
+            driver = new ChromeDriver(options);
             driver.manage().window().maximize();
 
             driver.get("https://demoqa.com/automation-practice-form");
+
 
             // Hide ads and banners
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -45,11 +54,24 @@ public class App {
             driver.findElement(By.xpath("//label[text()='Female']")).click();
             driver.findElement(By.id("userNumber")).sendKeys("1234567890");
 
-            // Date of Birth
-            driver.findElement(By.id("dateOfBirthInput")).click();
-            driver.findElement(By.className("react-datepicker__month-select")).sendKeys("May");
-            driver.findElement(By.className("react-datepicker__year-select")).sendKeys("2000");
-            driver.findElement(By.xpath("//div[contains(@class, 'react-datepicker__day') and text()='15']")).click();
+            // Date of Birth: scroll + JS click + wait
+            WebElement dateInput = Utils.explicitWait(driver,
+                    ExpectedConditions.elementToBeClickable(By.id("dateOfBirthInput")), 10);
+            Utils.scrollToElementStatic(driver, dateInput);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", dateInput);
+
+            // Select month, year, day
+            WebElement monthSelect = Utils.explicitWait(driver,
+                    ExpectedConditions.elementToBeClickable(By.className("react-datepicker__month-select")), 10);
+            monthSelect.sendKeys("May");
+
+            WebElement yearSelect = Utils.explicitWait(driver,
+                    ExpectedConditions.elementToBeClickable(By.className("react-datepicker__year-select")), 10);
+            yearSelect.sendKeys("2000");
+
+            WebElement daySelect = Utils.explicitWait(driver,
+                    ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class, 'react-datepicker__day') and text()='15']")), 10);
+            daySelect.click();
 
             // Subjects
             WebElement subjectInput = driver.findElement(By.id("subjectsInput"));
@@ -78,28 +100,20 @@ public class App {
 
             // Scroll and submit
             WebElement submitButton = driver.findElement(By.id("submit"));
-            js.executeScript("arguments[0].scrollIntoView(true);", submitButton);
-            submitButton.click();
+            Utils.scrollToElementStatic(driver, submitButton);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitButton);
 
-            // Wait a bit to view result
             Thread.sleep(3000);
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                // Stop video recording
-                if (recorder != null)
-                    recorder.stop();
+                if (recorder != null) recorder.stop();
             } catch (ATUTestRecorderException e) {
                 e.printStackTrace();
             }
-
-            // Quit driver
-            if (driver != null)
-                driver.quit();
+            if (driver != null) driver.quit();
         }
     }
 }
-
-// ssh-ed25519
