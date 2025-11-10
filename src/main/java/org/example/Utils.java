@@ -1,4 +1,4 @@
-package org.example.utils;
+package org.example;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;

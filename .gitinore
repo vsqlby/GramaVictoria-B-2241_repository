@@ -1,0 +1,22 @@
+# Ignore Chrome executables and drivers
+chromedriver*
+*.app/
+*.exe
+*.zip
+
+# Ignore build and dependency folders
+target/
+bin/
+out/
+
+# Ignore IDE files
+.idea/
+*.iml
+.vscode/
+
+# Ignore video recordings
+test-videos/
+
+# Ignore OS and temp files
+.DS_Store
+*.log

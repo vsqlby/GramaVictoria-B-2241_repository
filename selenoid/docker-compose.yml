@@ -1,0 +1,21 @@
+services:
+  selenoid:
+    image: aerokube/selenoid:latest-release
+    network_mode: bridge
+    volumes:
+      - "./video:/opt/selenoid/video"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+    command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video" ]
+    ports:
+      - "4444:4444"
+    shm_size: '2gb'
+
+  selenoid-ui:
+    image: aerokube/selenoid-ui
+    depends_on:
+      - selenoid
+    network_mode: bridge
+    ports:
+      - "8080:8080"
+    command: [ "--selenoid-uri", "http://selenoid:4444" ]
