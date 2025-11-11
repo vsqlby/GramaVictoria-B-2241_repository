@@ -1,18 +1,23 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# ===============================
+# OS Files (macOS / Windows)
+# ===============================
+.DS_Store
+Thumbs.db
 
-### IntelliJ IDEA ###
+# ===============================
+# IDE Files (IntelliJ, VS Code, Eclipse, NetBeans)
+# ===============================
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
-*.iws
-*.iml
-*.ipr
 
-### Eclipse ###
+# Eclipse
 .apt_generated
 .classpath
 .factorypath
@@ -21,7 +26,7 @@ target/
 .springBeans
 .sts4-cache
 
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -31,9 +36,35 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
+# VS Code
 .vscode/
 
-### Mac OS ###
-.DS_Storeselenoid/DockerDesktop/
+# ===============================
+# Java / Maven / Gradle
+# ===============================
+target/
+bin/
+out/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ===============================
+# Chrome / WebDriver
+# ===============================
+chromedriver*
+*.exe
+*.app/
+*.zip
+
+# ===============================
+# Selenium test videos and logs
+# ===============================
+test-videos/
+*.log
+
+# ===============================
+# Docker / Selenoid
+# ===============================
 selenoid/DockerDesktop/
+DockerDesktop/
