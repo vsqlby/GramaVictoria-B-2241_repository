@@ -37,6 +37,7 @@ jobs:
       - name: Run Selenium Test
         run: mvn exec:java -Dexec.mainClass="org.example.App"
 
+      # ✅ Add this section at the end — do NOT start a new workflow
       - name: Upload test videos
         if: always()
         uses: actions/upload-artifact@v4
