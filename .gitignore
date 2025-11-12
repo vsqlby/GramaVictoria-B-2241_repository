@@ -60,8 +60,10 @@ chromedriver*
 # ===============================
 # Selenium test videos and logs
 # ===============================
-test-videos/*
+# Allow video files inside test-videos to be tracked
 !test-videos/
+!test-videos/**
+
 
 # ===============================
 # Docker / Selenoid

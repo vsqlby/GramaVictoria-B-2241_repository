@@ -37,23 +37,21 @@
       <version>5.9.2</version>
     </dependency>
 
-    <!-- ATUTestRecorder (local JAR) -->
-    <dependency>
-      <groupId>com.atu</groupId>
-      <artifactId>testrecorder</artifactId>
-      <version>2.1</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/libs/ATUTestRecorder_2.1.jar</systemPath>
-    </dependency>
+  <dependency>
+    <groupId>com.atu</groupId>
+    <artifactId>testrecorder</artifactId>
+    <version>2.1</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/libs/ATUTestRecorder_2.1.jar</systemPath>
+  </dependency>
 
-    <!-- ATUReporter (optional, pentru rapoarte vizuale) -->
-    <dependency>
-      <groupId>com.atu</groupId>
-      <artifactId>reporter</artifactId>
-      <version>5.1.1</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/libs/ATUReporter_Selenium_testNG_5.1.1.jar</systemPath>
-    </dependency>
+  <dependency>
+    <groupId>com.atu</groupId>
+    <artifactId>reporter</artifactId>
+    <version>5.1.1</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/libs/ATUReporter_Selenium_testNG_5.1.1.jar</systemPath>
+  </dependency>
   </dependencies>
 
   <build>

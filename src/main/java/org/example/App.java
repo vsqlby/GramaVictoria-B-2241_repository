@@ -32,17 +32,18 @@ public class App {
             String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
             // ✅ Only record locally (GitHub Actions has no screen)
-            if (System.getenv("GITHUB_ACTIONS") == null) {
+            if (System.getenv("GITHUB_ACTIONS") != null) {
+                System.out.println("⚠️ Running on GitHub Actions — video recording skipped.");
+            } else {
                 try {
                     recorder = new ATUTestRecorder("test-videos", "FormTest_Video", false);
                     recorder.start();
-                    System.out.println("🎥 Video recording started...");
+                    System.out.println("🎥 Video recording started locally...");
                 } catch (ATUTestRecorderException e) {
                     e.printStackTrace();
                 }
-            } else {
-                System.out.println("⚠️ Running on GitHub Actions — video recording skipped.");
             }
+
 
             // ✅ Setup WebDriver
             WebDriverManager.chromedriver().setup();
