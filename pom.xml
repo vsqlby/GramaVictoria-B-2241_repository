@@ -43,7 +43,6 @@
       <version>2.1</version>
     </dependency>
 
-
     <dependency>
     <groupId>com.atu</groupId>
     <artifactId>reporter</artifactId>
