@@ -34,7 +34,7 @@ public class App {
             // ✅ Only record locally (GitHub Actions has no screen)
             if (System.getenv("GITHUB_ACTIONS") == null) {
                 try {
-                    recorder = new ATUTestRecorder("test-videos", "FormTest_" + timestamp, false);
+                    recorder = new ATUTestRecorder("test-videos", "FormTest_Video", false);
                     recorder.start();
                     System.out.println("🎥 Video recording started...");
                 } catch (ATUTestRecorderException e) {

@@ -60,9 +60,8 @@ chromedriver*
 # ===============================
 # Selenium test videos and logs
 # ===============================
--test-videos/
-+!test-videos/
- *.log
+test-videos/*
+!test-videos/
 
 # ===============================
 # Docker / Selenoid
