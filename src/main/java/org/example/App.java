@@ -126,12 +126,16 @@ public class App {
             }
 
         } finally {
-            // ✅ Stop recorder safely
+            // ✅ Stop recorder safely only if running
             try {
-                if (recorder != null) recorder.stop();
-                System.out.println("🎬 Recording stopped.");
+                if (recorder != null) {
+                    recorder.stop();
+                    System.out.println("🎬 Recording stopped.");
+                } else {
+                    System.out.println("⏹ No recording session active.");
+                }
             } catch (ATUTestRecorderException e) {
-                e.printStackTrace();
+                System.out.println("⚠️ Recorder stop skipped: " + e.getMessage());
             }
 
             // ✅ Quit driver safely
