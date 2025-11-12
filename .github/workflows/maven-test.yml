@@ -33,6 +33,12 @@ jobs:
           sudo apt install -y ./google-chrome-stable_current_amd64.deb
           google-chrome --version
 
+      - name: Install local ATU JARs
+        run: |
+          mvn install:install-file -Dfile=libs/ATUTestRecorder_2.1.jar -DgroupId=com.atu -DartifactId=testrecorder -Dversion=2.1 -Dpackaging=jar
+          mvn install:install-file -Dfile=libs/ATUReporter_Selenium_testNG_5.1.1.jar -DgroupId=com.atu -DartifactId=reporter -Dversion=5.1.1 -Dpackaging=jar
+    
+
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
@@ -50,3 +56,5 @@ jobs:
         with:
           name: test-videos
           path: test-videos/
+
+
